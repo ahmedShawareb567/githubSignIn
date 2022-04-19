@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type file {
+  id: ID!
+  name: String!
+  path: String!
+  size: String!
+  mimeType: String!
+}
+
+type User {
+  id: ID!
+  profilePicture: String
+  userName: String!
+  email: String!
+  token: String
+}
+
+type Query {
+  me: User!
+}
+
+type Mutation {
+  register(input: RegisterInput!): User!
+  login(input: LoginInput!): User!
+  socialLoginOrRegister(input: SocialAccountInput!): User!
+  uploadFile(model: String, file: Upload!): file!
+}
+
+input RegisterInput {
+  profilePicture: String
+  userName: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input SocialAccountInput {
+  providerId: String!
+  provider: SocialProvidersEnum!
+  profilePicture: String
+  userName: String!
+  email: String!
+}
+
+enum SocialProvidersEnum {
+  FACEBOOK
+  TWITTER
+  GOOGLE
+  APPLE
+  GITHUB
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
